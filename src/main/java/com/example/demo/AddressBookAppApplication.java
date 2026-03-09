@@ -43,7 +43,10 @@ public class AddressBookAppApplication {
 					System.out.println("3 Delete Contact");
 					System.out.println("4 Display Contacts");
 					System.out.println("5 Sort Contacts By Name");
-					System.out.println("6 Exit");
+					System.out.println("6 Sort By City");
+					System.out.println("7 Sort By state");
+					System.out.println("8 Sort By zip");
+					System.out.println("9 Exit");
 
 					int option = sc.nextInt();
 					sc.nextLine();
@@ -69,10 +72,25 @@ public class AddressBookAppApplication {
 
 					else if(option == 5) {
 						book.sortContactsByName();
-						book.deleteContact();
+						book.displayContacts();
 					}
 
-					else if (option == 6) {
+					else if(option == 6) {
+						book.sortByCity();
+						book.displayContacts();
+					}
+
+					else if(option == 7) {
+						book.sortByState();
+						book.displayContacts();
+					}
+
+					else if(option == 8) {
+						book.sortByZip();
+						book.displayContacts();
+					}
+
+					else if (option == 9) {
 						break;
 					}
 				}

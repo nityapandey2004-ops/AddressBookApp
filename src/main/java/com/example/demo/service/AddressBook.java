@@ -121,4 +121,28 @@ public class AddressBook {
 
         System.out.println("Contacts sorted successfully.");
     }
+
+    public void sortByCity() {
+        contactList.sort((c1, c2) ->
+                c1.getCity().compareToIgnoreCase(c2.getCity())
+        );
+
+        System.out.println("Contacts sorted by City.");
+    }
+
+    public void sortByState() {
+        contactList.sort((c1, c2) ->
+                c1.getState().compareToIgnoreCase(c2.getState())
+        );
+
+        System.out.println("Contacts sorted by State.");
+    }
+
+    public void sortByZip() {
+        contactList.sort((c1, c2) ->
+                c1.getZip().compareToIgnoreCase(c2.getZip())
+        );
+
+        System.out.println("Contacts sorted by Zip.");
+    }
 }
