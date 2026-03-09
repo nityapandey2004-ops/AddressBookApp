@@ -57,7 +57,8 @@ public class AddressBookAppApplication {
 					System.out.println("15 Add Contact To Database");
 					System.out.println("16 Retrieve from Database");
 					System.out.println("17 Update contact");
-					System.out.println("18 Exit");
+					System.out.println("18 Retrieve contact added in a particular period");
+					System.out.println("19 Exit");
 					
 					int option = sc.nextInt();
 					sc.nextLine();
@@ -160,8 +161,18 @@ public class AddressBookAppApplication {
 			            
 						addressBookRepository.updateContactByFirstName(firstName, lastName, address, city, state, zip, phone, email);
 					}
-
+					
 					else if (option == 18) {
+						System.out.print("Enter start date(YYYY-MM-DD) : ");
+						String startDate = sc.nextLine();
+						
+						System.out.print("Enter end date(YYYY-MM-DD) : ");
+						String endDate = sc.nextLine();
+						
+						addressBookRepository.retrieveContactsByDateRange(startDate, endDate);
+					}
+
+					else if (option == 19) {
 					    break;
 					}
 				}
