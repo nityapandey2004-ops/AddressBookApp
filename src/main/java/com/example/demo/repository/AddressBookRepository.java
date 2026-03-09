@@ -204,4 +204,12 @@ public class AddressBookRepository {
         }
         return count;
     }
+    
+    public void addContactUsingThread(String firstName, String lastName, String address, String city, String state, String zip, String phone, String email) {
+    	Thread thread = new Thread(() -> {
+    			boolean result = addContact(firstName, lastName, address, city, state, zip, phone, email);
+    			if(result) System.out.println("Contact inserted by thread : " + firstName);
+    		});
+    		thread.start();
+    }
 }
