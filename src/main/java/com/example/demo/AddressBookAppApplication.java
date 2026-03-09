@@ -48,7 +48,9 @@ public class AddressBookAppApplication {
 					System.out.println("8 Sort By zip");
 					System.out.println("9 Write Contacts To File");
 					System.out.println("10 Read Contacts From File");
-					System.out.println("11 Exit");
+					System.out.println("11 Write Contacts To CSV");
+					System.out.println("12 Read Contacts To CSV");
+					System.out.println("13 Exit");
 
 					int option = sc.nextInt();
 					sc.nextLine();
@@ -101,7 +103,15 @@ public class AddressBookAppApplication {
 					}
 
 					else if (option == 11) {
-						break;
+					    book.writeToCSV();
+					}
+
+					else if (option == 12) {
+					    book.readFromCSV();
+					}
+
+					else if (option == 13) {
+					    break;
 					}
 				}
 			}
