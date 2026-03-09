@@ -13,33 +13,9 @@ import com.example.demo.repository.DBConnection;
 
 public class AddressBookRepository {
     Scanner sc = new Scanner(System.in);
-    public void addContact() {
+    public boolean addContact(String firstName, String lastName, String address, String city, String state, String zip, String phone, String email) {
         try {
             Connection connection = DBConnection.getConnection();
-
-            System.out.println("Enter First Name:");
-            String firstName = sc.nextLine();
-
-            System.out.println("Enter Last Name:");
-            String lastName = sc.nextLine();
-
-            System.out.println("Enter Address:");
-            String address = sc.nextLine();
-
-            System.out.println("Enter City:");
-            String city = sc.nextLine();
-
-            System.out.println("Enter State:");
-            String state = sc.nextLine();
-
-            System.out.println("Enter Zip:");
-            String zip = sc.nextLine();
-
-            System.out.println("Enter Phone Number:");
-            String phone = sc.nextLine();
-
-            System.out.println("Enter Email:");
-            String email = sc.nextLine();
 
             String query = "INSERT INTO contacts(first_name,last_name,address,city,state,zip,phone_number,email) VALUES (?,?,?,?,?,?,?,?)";
 
@@ -57,10 +33,12 @@ public class AddressBookRepository {
             statement.executeUpdate();
             System.out.println("Contact added to database.");
             connection.close();
+            return true;
         }
         catch (Exception e) {
             e.printStackTrace();
         }
+        return false;
     }
     
     public int retrieveContacts() {
