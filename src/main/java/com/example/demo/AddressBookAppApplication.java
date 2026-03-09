@@ -58,7 +58,9 @@ public class AddressBookAppApplication {
 					System.out.println("16 Retrieve from Database");
 					System.out.println("17 Update contact");
 					System.out.println("18 Retrieve contact added in a particular period");
-					System.out.println("19 Exit");
+					System.out.println("19 Count Contacts by City");
+					System.out.println("20 Count Contacts by State");
+					System.out.println("21 Exit");
 					
 					int option = sc.nextInt();
 					sc.nextLine();
@@ -171,8 +173,26 @@ public class AddressBookAppApplication {
 						
 						addressBookRepository.retrieveContactsByDateRange(startDate, endDate);
 					}
+					
+					else if(option == 19) {
+					    System.out.print("Enter city : ");
+					    String city = sc.nextLine();
+					    
+					    int count = addressBookRepository.countContactsByCity(city);
 
-					else if (option == 19) {
+					    System.out.println("Total contacts in city: " + count);
+					}
+
+					else if(option == 20) {
+					    System.out.print("Enter state: ");
+					    String state = sc.nextLine();
+					    
+					    int count = addressBookRepository.countContactsByState(state);
+
+					    System.out.println("Total contacts in state: " + count);
+					}
+
+					else if (option == 21) {
 					    break;
 					}
 				}

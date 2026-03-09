@@ -69,7 +69,7 @@ public class AddressBookRepository {
             String query = "SELECT * FROM contacts";
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
-            int totalContacts = rs.getFetchSize();
+            int totalContacts = 0;
             
             while (rs.next()) {
                 System.out.println(
@@ -82,6 +82,7 @@ public class AddressBookRepository {
                         rs.getString("phone_number") + ", " +
                         rs.getString("email")
                 );
+                totalContacts++;
             }
             connection.close();
             return totalContacts;
@@ -176,6 +177,47 @@ public class AddressBookRepository {
                         rs.getDate("date_added")
                 );
                 count++;
+            }
+            connection.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+    
+    public int countContactsByCity(String city) {
+        int count = 0;
+        try {
+            Connection connection = DBConnection.getConnection();
+            String query = "SELECT count_contacts_by_city(?)";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, city);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+
+            connection.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+    
+    public int countContactsByState(String state) {
+        int count = 0;
+        try {
+            Connection connection = DBConnection.getConnection();
+            String query = "SELECT count_contacts_by_state(?)";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, state);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                count = rs.getInt(1);
             }
             connection.close();
         }
