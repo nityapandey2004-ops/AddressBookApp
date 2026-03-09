@@ -12,7 +12,6 @@ public class AddressBook {
     public Contact addContact() {
         System.out.println("Enter First Name:");
         String firstName = sc.nextLine();
-
         System.out.println("Enter Last Name:");
         String lastName = sc.nextLine();
 
@@ -80,23 +79,24 @@ public class AddressBook {
                 return;
             }
         }
+
         System.out.println("Contact not found.");
     }
 
-    public void deleteContact() {
+    public Contact deleteContact() {
         System.out.println("Enter the First Name of the contact to delete:");
         String name = sc.nextLine();
 
         for (int i = 0; i < contactList.size(); i++) {
-
             if (contactList.get(i).getFirstName().equalsIgnoreCase(name)) {
-                contactList.remove(i);
+                Contact removed = contactList.remove(i);
                 System.out.println("Contact deleted successfully!");
-                return;
+                return removed;
             }
         }
 
         System.out.println("Contact not found.");
+        return null;
     }
 
     public void displayContacts() {
@@ -104,6 +104,7 @@ public class AddressBook {
             System.out.println("No contacts available.");
             return;
         }
+
         for (Contact contact : contactList) {
             System.out.println(contact);
         }

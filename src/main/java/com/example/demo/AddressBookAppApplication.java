@@ -12,7 +12,6 @@ import java.util.Scanner;
 public class AddressBookAppApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AddressBookAppApplication.class, args);
-
 		System.out.println("Welcome to Address Book Program");
 		Scanner sc = new Scanner(System.in);
 		AddressBookManager manager = new AddressBookManager();
@@ -23,7 +22,9 @@ public class AddressBookAppApplication {
 			System.out.println("3 Show Address Book");
 			System.out.println("4 Search Person by City");
 			System.out.println("5 Search Person by State");
-			System.out.println("6 Exit");
+			System.out.println("6 Contact count by city");
+			System.out.println("7 Contact count by state");
+			System.out.println("8 Exit");
 
 			int choice = sc.nextInt();
 			sc.nextLine();
@@ -50,16 +51,33 @@ public class AddressBookAppApplication {
 						Contact contact = book.addContact();
 						manager.addToCityAndStateMap(contact);
 					}
-					else if (option == 2) book.editContact();
-					else if (option == 3) book.deleteContact();
-					else if (option == 4) book.displayContacts();
-					else if (option == 5) break;
+
+					else if (option == 2) {
+						book.editContact();
+						manager.rebuildCityAndStateMaps();
+					}
+
+					else if (option == 3) {
+						Contact removed = book.deleteContact();
+						manager.removeFromCityAndStateMap(removed);
+					}
+
+					else if (option == 4) {
+						book.displayContacts();
+					}
+
+					else if (option == 5) {
+						break;
+					}
 				}
 			}
-			else if(choice == 3) manager.displayAddressBooks();
-			else if(choice == 4) manager.searchByCity();
-			else if(choice == 5) manager.searchByState();
-			else if (choice == 6) break;
+
+			else if (choice == 3) manager.displayAddressBooks();
+			else if (choice == 4) manager.searchByCity();
+			else if (choice == 5) manager.searchByState();
+			else if (choice == 6) manager.countByCity();
+			else if (choice == 7) manager.countByState();
+			else if (choice == 8) break;
 		}
 	}
 }
