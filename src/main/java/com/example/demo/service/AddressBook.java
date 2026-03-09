@@ -8,6 +8,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -237,6 +242,34 @@ public class AddressBook {
         } 
         catch (Exception e) {
             System.out.println("Error");
+        }
+    }
+    
+    public void writeToJSON() {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        try {
+            FileWriter writer = new FileWriter("AddressBook.json");
+            gson.toJson(contactList, writer);
+            writer.close();
+            System.out.println("Contacts written to JSON successfully.");
+        } 
+        catch (IOException e) {
+            System.out.println("Error writing JSON file.");
+        }
+    }
+    
+    public void readFromJSON() {
+        Gson gson = new Gson();
+        try {
+            FileReader reader = new FileReader("AddressBook.json");
+            Contact[] contacts = gson.fromJson(reader, Contact[].class);
+            for (Contact contact : contacts) {
+                System.out.println(contact);
+            }
+            reader.close();
+        }
+        catch (Exception e) {
+            System.out.println("Error reading JSON file.");
         }
     }
 }

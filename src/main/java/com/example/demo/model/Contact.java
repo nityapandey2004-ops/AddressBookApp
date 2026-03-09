@@ -97,4 +97,31 @@ public class Contact {
     public void setEmail(String email) {
         this.email = email;
     }
+    
+    @Override
+    public String toString() {
+        return firstName + " " + lastName +
+                ", Address: " + address +
+                ", City: " + city +
+                ", State: " + state +
+                ", Zip: " + zip +
+                ", Phone: " + phoneNumber +
+                ", Email: " + email;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Contact)) return false;
+
+        Contact contact = (Contact) o;
+
+        return firstName.equalsIgnoreCase(contact.firstName) &&
+                lastName.equalsIgnoreCase(contact.lastName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName.toLowerCase(), lastName.toLowerCase());
+    }
 }

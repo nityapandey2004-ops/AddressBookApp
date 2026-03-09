@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import com.example.demo.model.Contact;
+import com.example.demo.repository.AddressBookRepository;
 import com.example.demo.service.AddressBook;
 import com.example.demo.service.AddressBookManager;
 import org.springframework.boot.SpringApplication;
@@ -15,6 +16,7 @@ public class AddressBookAppApplication {
 		System.out.println("Welcome to Address Book Program");
 		Scanner sc = new Scanner(System.in);
 		AddressBookManager manager = new AddressBookManager();
+		AddressBookRepository addressBookRepository = new AddressBookRepository();
 
 		while (true) {
 			System.out.println("1 Create Address Book");
@@ -52,7 +54,9 @@ public class AddressBookAppApplication {
 					System.out.println("12 Read Contacts To CSV");
 					System.out.println("13 Write Contacts To JSON");
 					System.out.println("14 Read Contacts From JSON");
-					System.out.println("15 Exit");
+					System.out.println("15 Add Contact To Database");
+					System.out.println("16 Retrieve from Database");
+					System.out.println("17 Exit");
 					
 					int option = sc.nextInt();
 					sc.nextLine();
@@ -119,8 +123,16 @@ public class AddressBookAppApplication {
 					else if (option == 14) {
 					    book.readFromJSON();
 					}
-
+					
 					else if (option == 15) {
+						addressBookRepository.addContact();
+					}
+					
+					else if (option == 16) {
+						addressBookRepository.retrieveContacts();
+					}
+
+					else if (option == 17) {
 					    break;
 					}
 				}
